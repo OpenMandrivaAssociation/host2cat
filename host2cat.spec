@@ -26,6 +26,7 @@ BuildRequires:	libmemcache-devel
 # for findreq
 BuildRequires: 	perl-DBI
 BuildRequires:	perl-Net-DNS perl-CGI
+BuildRequires:  zlib-devel
 
 # for cgi-bin dir
 Requires:	apache-base
