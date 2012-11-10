@@ -1,0 +1,39 @@
+diff -r 7ef1209cc6b9 -r d608125d5ae7 scripts/custom_roles
+--- a/scripts/custom_roles	Wed Nov 17 17:12:14 2010 +0300
++++ b/scripts/custom_roles	Thu Nov 18 11:16:03 2010 +0300
+@@ -1,11 +1,2 @@
+ # This file have the same format as generec_roles, except that
+ # keyword 'accept' doesn't permitted
+-
+-role my_student
+-	parent student
+-	reject 1 8 24 34
+-	redirect 9
+-
+-role my_teacher
+-	parent teacher admin
+-	reject 1 8 24 34
+diff -r 7ef1209cc6b9 -r d608125d5ae7 scripts/generic_roles
+--- a/scripts/generic_roles	Wed Nov 17 17:12:14 2010 +0300
++++ b/scripts/generic_roles	Thu Nov 18 11:16:03 2010 +0300
+@@ -10,9 +10,4 @@
+ #		exactmatch == exactmatch on
+ 
+ role admin
+-
+-role teacher
+-	reject 1 8 24 34
+-
+-role student
+-	reject 1 8 24 34
++	redirect 101 57
+diff -r 7ef1209cc6b9 -r d608125d5ae7 scripts/users
+--- a/scripts/users	Wed Nov 17 17:12:14 2010 +0300
++++ b/scripts/users	Thu Nov 18 11:16:03 2010 +0300
+@@ -3,5 +3,4 @@
+ # if no address given, default is 0.0.0.0/0
+ # if no suffix given, default is /32
+ 
+-@			student
+-netpolice@		student
++@			admin
