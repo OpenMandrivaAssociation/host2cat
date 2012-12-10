@@ -1,6 +1,2 @@
 sources:
-  "host2cat-1.02.tar.gz:"	baa1ff1fa1d7e8a0315f6803213631e33117562d
-  "host2cat.init:"	d3a2b7ba70ce82cd30e48236a428b5d3e8f776f8
-  "host2cat.sysconfig:"	d77377cf7cfcb112d1957f060d35d66651f953c9
-  "SQLite_migration_1.0.2_to_1.1.sql:"	7143e3ed31872895dec963392268d908c1e7d90e
-  "squid.conf:"	91a8d136cd30016bf9d8e208b2c797d93a5edfc2
+  "host2cat-1.02.tar.gz": baa1ff1fa1d7e8a0315f6803213631e33117562d

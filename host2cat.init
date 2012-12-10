@@ -1,0 +1,86 @@
+#!/bin/sh
+#
+# host2cat	DNS resolver.
+#
+# chkconfig: 345 90 10
+# description:	DNS resolver for web content filtering
+# processname: host2cat
+# config: /etc/sysconfig/host2cat
+
+# Do not load RH compatibility interface.
+WITHOUT_RC_COMPAT=1
+
+# Source function library.
+. /etc/init.d/functions
+
+# Check for and source configuration file otherwise set defaults 
+# Include config
+if [ -s /etc/sysconfig/host2cat ]; then
+  . /etc/sysconfig/host2cat            
+fi 
+
+LOCKFILE=/var/lock/subsys/host2cat
+RETVAL=0
+pidfile=/var/run/host2cat
+
+start()
+{
+	daemon --user root /usr/sbin/host2cat ${HOST2CAT_OPTIONS}
+	RETVAL=$?
+	return $RETVAL
+}
+
+stop()
+{
+	killproc /usr/sbin/host2cat
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then
+	      rm -f $LOCKFILE
+	      rm -f $pidfile
+	fi
+	return $RETVAL
+}
+
+restart()
+{
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	reload|restart)
+		restart
+		;;
+	condstop)
+		if [ -e "$LOCKFILE" ]; then
+			stop
+		fi
+		;;
+	condrestart)
+		if [ -e "$LOCKFILE" ]; then
+			restart
+		fi
+		;;
+	condreload)
+		if [ -e "$LOCKFILE" ]; then
+			reload
+		fi
+		;;
+	status)
+		status host2cat
+		RETVAL=$?
+		;;
+	*)
+		msg_usage "${0##*/} {start|stop|reload|restart|condstop|condrestart|condreload|status}"
+		RETVAL=1
+esac
+
+exit $RETVAL

@@ -4,12 +4,11 @@
 
 Name:		host2cat
 Version:	1.02
-Release:	1
+Release:	2
 
 Summary:	Custom DNS resolver
 License:	BSD
 Group:		System/Servers
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Url:		www.netpolice.ru
 
 Source0: 	%{name}-%{version}.tar.gz
@@ -17,16 +16,16 @@ Source1: 	%{name}.init
 Source2: 	%{name}.sysconfig
 Source3: 	squid.conf
 Source4:	SQLite_migration_1.0.2_to_1.1.sql
-Patch:		%{name}-filterdb.patch
+Patch0:		%{name}-filterdb.patch
 
 # Automatically added by buildreq on Fri Apr 10 2009
 BuildRequires:	libadns-devel
-BuildRequires:	libmemcache-devel
+BuildRequires:	memcache-devel
 
 # for findreq
 BuildRequires: 	perl-DBI
 BuildRequires:	perl-Net-DNS perl-CGI
-BuildRequires:  zlib-devel
+BuildRequires:  pkgconfig(zlib)
 
 # for cgi-bin dir
 Requires:	apache-base
@@ -50,7 +49,7 @@ This package contains squid config adapted for %{name}.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 
 %build
 aclocal --force
@@ -61,7 +60,6 @@ automake --add-missing --force-missing --foreign
 %make
 
 %install
-rm -rf %{buildroot}
 
 mkdir -p %{buildroot}/{%{_cachedir}/%{name},%{webserver_cgibindir},%{_libexecdir}/%{name}}
 mkdir -p %{buildroot}/%{_var}/lib/netpolice
@@ -112,9 +110,6 @@ usr/sbin/htpasswd -b /var/lib/netpolice/squid/passwd netpolice netpolice
 
 %post -n squid-conf-%{name}
 
-%clean
-rm -rf %{buildroot}
-
 %files
 %defattr(-,root,root)
 %{_initdir}/%{name}
@@ -135,8 +130,13 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %config(noreplace) /etc/squid/squid.conf.sample
 
-%changelog
-* Fri Aug 5 2011 L.Butorina <l.butorina@cair.ru> 1
-- New test version host2cat 1.02 for Mandriva.
 
+
+%changelog
+* Wed Dec 07 2011 Pischulin Anton <apischulin@mandriva.org> 1.02-1
++ Revision: 738476
+- update to 1.02
+
+  + Alex Burmashev <burmashev@mandriva.org>
+    - import host2cat
 
