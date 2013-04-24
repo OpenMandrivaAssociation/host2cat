@@ -4,7 +4,7 @@
 
 Name:		host2cat
 Version:	1.02
-Release:	2
+Release:	3
 
 Summary:	Custom DNS resolver
 License:	BSD
