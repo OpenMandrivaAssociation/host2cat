@@ -108,7 +108,6 @@ usr/sbin/htpasswd -b /var/lib/netpolice/squid/passwd netpolice netpolice
 %preun
 %_preun_service %{name}
 
-%post -n squid-conf-%{name}
 
 %files
 %defattr(-,root,root)
