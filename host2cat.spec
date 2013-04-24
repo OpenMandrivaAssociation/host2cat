@@ -4,7 +4,7 @@
 
 Name:		host2cat
 Version:	1.02
-Release:	3
+Release:	4
 
 Summary:	Custom DNS resolver
 License:	BSD
@@ -19,7 +19,7 @@ Source4:	SQLite_migration_1.0.2_to_1.1.sql
 Patch0:		%{name}-filterdb.patch
 
 # Automatically added by buildreq on Fri Apr 10 2009
-BuildRequires:	libadns-devel
+BuildRequires:	adns-devel
 BuildRequires:	memcache-devel
 
 # for findreq
